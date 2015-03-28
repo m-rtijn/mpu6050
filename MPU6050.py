@@ -152,9 +152,9 @@ class MPU6050:
         if g is True:
             return {'x': x, 'y': y, 'z': z}
         elif g is False:
-            x = x * gravityMS2
-            y = y * gravityMS2
-            z = z * gravityMS2
+            x = x * self.gravityMS2
+            y = y * self.gravityMS2
+            z = z * self.gravityMS2
             return {'x': x, 'y': y, 'z': z}
         
 
@@ -222,3 +222,15 @@ class MPU6050:
         gyro = GetGyroData()
 
         return [accel, gyro, temp]
+
+if __name__ == "__main__":
+    mpu = MPU6050(0x68)
+    print(mpu.GetTemp())
+    accelData = mpu.GetAccelData()
+    print(accelData['x'])
+    print(accelData['y'])
+    print(accelData['z'])
+    gyroData = mpu.GetGyroData()
+    print(gyroData['x'])
+    print(gyroData['y'])
+    print(gyroData['z'])
