@@ -5,19 +5,19 @@ from MPU6050 import MPU6050
 sensor = MPU6050(0x68)
 
 # Get all the values using the GetAllValues() method
-accelData = sensor.GetAccelData()
-gyroData = sensor.GetGyroData()
-temp = sensor.GetTemp()
+accel_data = sensor.get_accel_data()
+gyro_data = sensor.get_gyro_data()
+temp = sensor.get_temp()
 
 # Print the sensorData
 print("Accelerometer data")
-print("x: " + str(accelData['x']))
-print("y: " + str(accelData['y']))
-print("z: " + str(accelData['z']))
+print("x: " + str(accel_data['x']))
+print("y: " + str(accel_data['y']))
+print("z: " + str(accel_data['z']))
 
 print("Gyroscope data")
-print("x: " + str(gyroData['x']))
-print("y: " + str(gyroData['y']))
-print("z: " + str(gyroData['z']))
+print("x: " + str(gyro_data['x']))
+print("y: " + str(gyro_data['y']))
+print("z: " + str(gyro_data['z']))
 
 print("Temp: " + str(temp) + " C")

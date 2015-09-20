@@ -9,4 +9,3 @@ Fix:
 
 Test:
 - option for get_accel_data to return in g or in m/s^2
-- Test if my PEP 8 things didn't break anything
