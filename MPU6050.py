@@ -68,6 +68,12 @@ class MPU6050:
     # I2C communication methods
 
     def read_i2c_word(self, register):
+        """Read two i2c registers and combine them.
+
+        register -- the first register to read from.
+
+        Returns the combined read results.
+        """
         # Read the data from the registers
         high = self.bus.read_byte_data(self.address, register)
         low = self.bus.read_byte_data(self.address, register + 1)
@@ -81,8 +87,11 @@ class MPU6050:
 
     # MPU-6050 Methods
 
-    # Returns the temperature in degrees celcius read from the temperature sensor in the MPU-6050
     def get_temp(self):
+        """Reads the temperature from the onboard temperature sensor of the MPU-6050.
+
+        Returns the temperature in degrees Celcius.
+        """
         # Get the raw data
         raw_temp = self.read_i2c_word(self.TEMP_OUT0)
 
@@ -93,18 +102,23 @@ class MPU6050:
         # Return the temperature
         return actual_temp
 
-    # Sets the range of the accelerometer to range
     def set_accel_range(self, accel_range):
+        """Sets the range of the accelerometer to range.
+
+        accel_range -- the range to set the accelerometer to. Using a pre-defined range is advised.
+        """
         # First change it to 0x00 to make sure we write the correct value later
         self.bus.write_byte_data(self.address, self.ACCEL_CONFIG, 0x00)
 
         # Write the new range to the ACCEL_CONFIG register
         self.bus.write_byte_data(self.address, self.ACCEL_CONFIG, accel_range)
 
-    # Reads the range the accelerometer is set to
-    # If raw is True, it will return the raw value from the ACCEL_CONFIG register
-    # If raw is False, it will return an integer: -1, 2, 4, 8 or 16. When it returns -1 something went wrong.
     def read_accel_range(self, raw = False):
+        """Reads the range the accelerometer is set to.
+
+        If raw is True, it will return the raw value from the ACCEL_CONFIG register
+        If raw is False, it will return an integer: -1, 2, 4, 8 or 16. When it returns -1 something went wrong.
+        """
         # Get the raw value
         raw_data = self.bus.read_byte_data(self.address, self.ACCEL_CONFIG)
 
@@ -122,10 +136,12 @@ class MPU6050:
             else:
                 return -1
 
-    # Gets and returns the X, Y and Z values from the accelerometer
-    # If g is True, it will return the data in g
-    # If g is False, it will return the data in m/s^2
     def get_accel_data(self, g = False):
+        """Gets and returns the X, Y and Z values from the accelerometer
+
+        If g is True, it will return the data in g
+        If g is False, it will return the data in m/s^2
+        """
         # Read the data from the MPU-6050
         x = self.read_i2c_word(self.ACCEL_XOUT0)
         y = self.read_i2c_word(self.ACCEL_YOUT0)
@@ -157,20 +173,24 @@ class MPU6050:
             y = y * self.GRAVITIY_MS2
             z = z * self.GRAVITIY_MS2
             return {'x': x, 'y': y, 'z': z}
-        
 
-    # Sets the range of the gyroscope to range
     def set_gyro_range(self, gyro_range):
+        """Sets the range of the gyroscope to range.
+
+        gyro_range -- the range to set the gyroscope to. Using a pre-defined range is advised.
+        """
         # First change it to 0x00 to make sure we write the correct value later
         self.bus.write_byte_data(self.address, self.GYRO_CONFIG, 0x00)
 
         # Write the new range to the ACCEL_CONFIG register
         self.bus.write_byte_data(self.address, self.GYRO_CONFIG, gyro_range)
 
-    # Reads the range the gyroscope is set to
-    # If raw is True, it will return the raw value from the GYRO_CONFIG register
-    # If raw is False, it will return 250, 500, 1000, 2000 or -1. If the returned value is equal to -1 something went wrong.
     def read_gyro_range(self, raw = False):
+        """Reads the range the gyroscope is set to.
+
+        If raw is True, it will return the raw value from the GYRO_CONFIG register.
+        If raw is False, it will return 250, 500, 1000, 2000 or -1. If the returned value is equal to -1 something went wrong.
+        """
         # Get the raw value
         raw_data = self.bus.read_byte_data(self.address, self.GYRO_CONFIG)
 
@@ -188,8 +208,11 @@ class MPU6050:
             else:
                 return -1
 
-    # Gets and returns the X, Y and Z values from the gyroscope
     def get_gyro_data(self):
+        """Gets and returns the X, Y and Z values from the gyroscope.
+
+        Returns the read values in a dictionary.
+        """
         # Read the raw data from the MPU-6050
         x = self.read_i2c_word(self.GYRO_XOUT0)
         y = self.read_i2c_word(self.GYRO_YOUT0)
@@ -216,8 +239,8 @@ class MPU6050:
 
         return {'x': x, 'y': y, 'z': z}      
 
-    # Gets and returns the X, Y and Z values from the accelerometer and from the gyroscope and the temperature from the temperature sensor
     def get_all_data(self):
+        """Reads and returns all the available data."""
         temp = get_temp()
         accel = get_accel_data()
         gyro = get_gyro_data()

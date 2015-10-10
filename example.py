@@ -1,3 +1,8 @@
+#!/usr/bin/python
+# Made by: MrTijn/Tijndagamer
+# Released under the MIT License
+# Copyright 2015
+
 # Import the MPU6050 class from the MPU6050.py file
 from MPU6050 import MPU6050
 
