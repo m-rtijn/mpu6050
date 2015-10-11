@@ -1,8 +1,10 @@
-# This program handles the communication over I2C
-# between a Raspberry Pi and a MPU-6050 Gyroscope / Accelerometer combo
-# Made by: MrTijn/Tijndagamer
-# Released under the MIT License
-# Copyright 2015
+"""
+This program handles the communication over I2C
+between a Raspberry Pi and a MPU-6050 Gyroscope / Accelerometer combo.
+Made by: MrTijn/Tijndagamer
+Released under the MIT License
+Copyright 2015
+"""
 
 import smbus
 
@@ -71,7 +73,6 @@ class MPU6050:
         """Read two i2c registers and combine them.
 
         register -- the first register to read from.
-
         Returns the combined read results.
         """
         # Read the data from the registers
@@ -137,10 +138,11 @@ class MPU6050:
                 return -1
 
     def get_accel_data(self, g = False):
-        """Gets and returns the X, Y and Z values from the accelerometer
+        """Gets and returns the X, Y and Z values from the accelerometer.
 
         If g is True, it will return the data in g
         If g is False, it will return the data in m/s^2
+        Returns a dictionary with the measurement results.
         """
         # Read the data from the MPU-6050
         x = self.read_i2c_word(self.ACCEL_XOUT0)
