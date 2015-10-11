@@ -3,6 +3,7 @@ TODO:
 Add:
 - Method to disable the temp sensor.
 - Methods to change the clock source of the device.
+- Implement self test
 - Implement (almost) all the features made available by the hardware.
 
 Fix:
