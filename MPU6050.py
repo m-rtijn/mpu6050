@@ -40,6 +40,11 @@ class MPU6050:
     # MPU-6050 Registers
     PWR_MGMT_1 = 0x6B
     PWR_MGMT_2 = 0x6C
+
+    SELF_TEST_X = 0x0D
+    SELF_TEST_Y = 0x0E
+    SELF_TEST_Z = 0x0F
+    SELF_TEST_A = 0x10
     
     ACCEL_XOUT0 = 0x3B
     ACCEL_XOUT1 = 0x3C
