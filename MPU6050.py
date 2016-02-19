@@ -45,7 +45,7 @@ class MPU6050:
     SELF_TEST_Y = 0x0E
     SELF_TEST_Z = 0x0F
     SELF_TEST_A = 0x10
-    
+
     ACCEL_XOUT0 = 0x3B
     ACCEL_XOUT1 = 0x3C
     ACCEL_YOUT0 = 0x3D
@@ -111,7 +111,8 @@ class MPU6050:
     def set_accel_range(self, accel_range):
         """Sets the range of the accelerometer to range.
 
-        accel_range -- the range to set the accelerometer to. Using a pre-defined range is advised.
+        accel_range -- the range to set the accelerometer to. Using a
+        pre-defined range is advised.
         """
         # First change it to 0x00 to make sure we write the correct value later
         self.bus.write_byte_data(self.address, self.ACCEL_CONFIG, 0x00)
@@ -122,8 +123,10 @@ class MPU6050:
     def read_accel_range(self, raw = False):
         """Reads the range the accelerometer is set to.
 
-        If raw is True, it will return the raw value from the ACCEL_CONFIG register
-        If raw is False, it will return an integer: -1, 2, 4, 8 or 16. When it returns -1 something went wrong.
+        If raw is True, it will return the raw value from the ACCEL_CONFIG
+        register
+        If raw is False, it will return an integer: -1, 2, 4, 8 or 16. When it
+        returns -1 something went wrong.
         """
         # Get the raw value
         raw_data = self.bus.read_byte_data(self.address, self.ACCEL_CONFIG)
@@ -168,7 +171,7 @@ class MPU6050:
         else:
             print("Unkown range - accel_scale_modifier set to self.ACCEL_SCALE_MODIFIER_2G")
             accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_2G
-        
+
         x = x / accel_scale_modifier
         y = y / accel_scale_modifier
         z = z / accel_scale_modifier
@@ -184,7 +187,8 @@ class MPU6050:
     def set_gyro_range(self, gyro_range):
         """Sets the range of the gyroscope to range.
 
-        gyro_range -- the range to set the gyroscope to. Using a pre-defined range is advised.
+        gyro_range -- the range to set the gyroscope to. Using a pre-defined
+        range is advised.
         """
         # First change it to 0x00 to make sure we write the correct value later
         self.bus.write_byte_data(self.address, self.GYRO_CONFIG, 0x00)
@@ -195,8 +199,10 @@ class MPU6050:
     def read_gyro_range(self, raw = False):
         """Reads the range the gyroscope is set to.
 
-        If raw is True, it will return the raw value from the GYRO_CONFIG register.
-        If raw is False, it will return 250, 500, 1000, 2000 or -1. If the returned value is equal to -1 something went wrong.
+        If raw is True, it will return the raw value from the GYRO_CONFIG
+        register.
+        If raw is False, it will return 250, 500, 1000, 2000 or -1. If the
+        returned value is equal to -1 something went wrong.
         """
         # Get the raw value
         raw_data = self.bus.read_byte_data(self.address, self.GYRO_CONFIG)
@@ -227,7 +233,7 @@ class MPU6050:
 
         gyro_scale_modifier = None
         gyro_range = self.read_gyro_range(True)
-        
+
         if gyro_range == self.GYRO_RANGE_250DEG:
             gyro_scale_modifier = self.GYRO_SCALE_MODIFIER_250DEG
         elif gyro_range == self.GYRO_RANGE_500DEG:
@@ -239,12 +245,12 @@ class MPU6050:
         else:
             print("Unkown range - gyro_scale_modifier set to self.GYRO_SCALE_MODIFIER_250DEG")
             gyro_scale_modifier = self.GYRO_SCALE_MODIFIER_250DEG
-        
+
         x = x / gyro_scale_modifier
         y = y / gyro_scale_modifier
         z = z / gyro_scale_modifier
 
-        return {'x': x, 'y': y, 'z': z}      
+        return {'x': x, 'y': y, 'z': z}
 
     def get_all_data(self):
         """Reads and returns all the available data."""
