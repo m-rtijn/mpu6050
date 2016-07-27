@@ -102,7 +102,7 @@ class MPU6050:
 
         # Get the actual temperature using the formule given in the
         # MPU-6050 Register Map and Descriptions revision 4.2, page 30
-        actual_temp = (raw_temp / 340) + 36.53
+        actual_temp = (raw_temp / 340.0) + 36.53
 
         # Return the temperature
         return actual_temp
