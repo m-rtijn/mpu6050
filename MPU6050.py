@@ -97,14 +97,12 @@ class MPU6050:
 
         Returns the temperature in degrees Celcius.
         """
-        # Get the raw data
         raw_temp = self.read_i2c_word(self.TEMP_OUT0)
 
         # Get the actual temperature using the formule given in the
         # MPU-6050 Register Map and Descriptions revision 4.2, page 30
         actual_temp = (raw_temp / 340.0) + 36.53
 
-        # Return the temperature
         return actual_temp
 
     def set_accel_range(self, accel_range):
@@ -127,7 +125,6 @@ class MPU6050:
         If raw is False, it will return an integer: -1, 2, 4, 8 or 16. When it
         returns -1 something went wrong.
         """
-        # Get the raw value
         raw_data = self.bus.read_byte_data(self.address, self.ACCEL_CONFIG)
 
         if raw is True:
@@ -151,7 +148,6 @@ class MPU6050:
         If g is False, it will return the data in m/s^2
         Returns a dictionary with the measurement results.
         """
-        # Read the data from the MPU-6050
         x = self.read_i2c_word(self.ACCEL_XOUT0)
         y = self.read_i2c_word(self.ACCEL_YOUT0)
         z = self.read_i2c_word(self.ACCEL_ZOUT0)
@@ -203,7 +199,6 @@ class MPU6050:
         If raw is False, it will return 250, 500, 1000, 2000 or -1. If the
         returned value is equal to -1 something went wrong.
         """
-        # Get the raw value
         raw_data = self.bus.read_byte_data(self.address, self.GYRO_CONFIG)
 
         if raw is True:
@@ -225,7 +220,6 @@ class MPU6050:
 
         Returns the read values in a dictionary.
         """
-        # Read the raw data from the MPU-6050
         x = self.read_i2c_word(self.GYRO_XOUT0)
         y = self.read_i2c_word(self.GYRO_YOUT0)
         z = self.read_i2c_word(self.GYRO_ZOUT0)
