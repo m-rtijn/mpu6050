@@ -7,7 +7,7 @@ Copyright 2015
 
 import smbus
 
-class MPU6050:
+class mpu6050:
 
     # Global Variables
     GRAVITIY_MS2 = 9.80665
