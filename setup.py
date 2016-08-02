@@ -21,5 +21,5 @@ setup(name='mpu6050-raspberrypi',
     install_requires=[
         'smbus',
     ],
-    scripts=['bin/mpu6050-example']
+    scripts=['bin/mpu6050-example'],
     zip_safe=False)
