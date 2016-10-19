@@ -6,7 +6,8 @@ def readme():
 
 setup(name='mpu6050-raspberrypi',
       version='1.0.3.1',
-      description='A package to handle the i2c communication between a Raspberry Pi and a MPU-6050',
+      description='A package to handle the i2c communication'
+                  'between a Raspberry Pi and a MPU-6050',
       classifiers=[
           'License :: OSI Approved :: MIT License',
           'Topic :: Software Development :: Libraries',
