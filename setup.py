@@ -1,11 +1,11 @@
 from setuptools import setup
 
 def readme():
-    with open('README.rst') as f:
+    with open('README.md') as f:
         return f.read()
 
 setup(name='mpu6050-raspberrypi',
-    version='1.0.2',
+    version='1.0.3',
     description='A package to handle the i2c communication between a Raspberry Pi and a MPU-6050',
     classifiers=[
         'License :: OSI Approved :: MIT License',
