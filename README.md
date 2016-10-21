@@ -24,3 +24,7 @@ get_accel_data()
 get_gyro_data()
 get_temp()
 ```
+
+#License
+
+This project is licensed under the MIT License. For the full license, please refer to the LICENSE file.
