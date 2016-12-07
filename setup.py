@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name='mpu6050-raspberrypi',
-      version='1.0.3.1',
+      version='1.0.3.2',
       description='A package to handle the i2c communication'
                   'between a Raspberry Pi and a MPU-6050',
       classifiers=[
@@ -19,7 +19,7 @@ setup(name='mpu6050-raspberrypi',
       author_email='tijndagamer25@gmail.com',
       license='MIT',
       packages=['mpu6050'],
-      install_requires=['smbus'],
+      install_requires=['smbus-cffi'],
       scripts=['bin/mpu6050-example'],
       zip_safe=False,
       long_description=readme())
