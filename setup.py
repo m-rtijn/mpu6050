@@ -5,9 +5,8 @@ def readme():
         return f.read()
 
 setup(name='mpu6050-raspberrypi',
-      version='1.0.3.2',
-      description='A package to handle the i2c communication'
-                  'between a Raspberry Pi and a MPU-6050',
+      version='1.0.3.3',
+      description='A Python module for accessing the MPU-6050 digital accelerometer and gyroscope on a Raspberry Pi.',
       classifiers=[
           'License :: OSI Approved :: MIT License',
           'Topic :: Software Development :: Libraries',
