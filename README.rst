@@ -8,7 +8,7 @@ Example
 
 Assuming that the address of your MPU-6050 is 0x68, you can read read accelerometer data like this:
 
-""
+::
 
     >>> from mpu6050 import mpu6050
 
