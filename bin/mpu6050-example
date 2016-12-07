@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 """Released under the MIT License
-Copyright 2015 MrTijn/Tijndagamer
+Copyright 2015, 2016 MrTijn/Tijndagamer
 """
 
-# Import the MPU6050 class from the MPU6050.py file
 from mpu6050 import mpu6050
 from time import sleep
 
-# Create a new instance of the MPU6050 class
 sensor = mpu6050(0x68)
 
 while True:
