@@ -40,27 +40,15 @@ class mpu6050:
     PWR_MGMT_1 = 0x6B
     PWR_MGMT_2 = 0x6C
 
-    SELF_TEST_X = 0x0D
-    SELF_TEST_Y = 0x0E
-    SELF_TEST_Z = 0x0F
-    SELF_TEST_A = 0x10
-
     ACCEL_XOUT0 = 0x3B
-    ACCEL_XOUT1 = 0x3C
     ACCEL_YOUT0 = 0x3D
-    ACCEL_YOUT1 = 0x3E
     ACCEL_ZOUT0 = 0x3F
-    ACCEL_ZOUT1 = 0x40
 
     TEMP_OUT0 = 0x41
-    TEMP_OUT1 = 0x42
 
     GYRO_XOUT0 = 0x43
-    GYRO_XOUT1 = 0x44
     GYRO_YOUT0 = 0x45
-    GYRO_YOUT1 = 0x46
     GYRO_ZOUT0 = 0x47
-    GYRO_ZOUT1 = 0x48
 
     ACCEL_CONFIG = 0x1C
     GYRO_CONFIG = 0x1B
