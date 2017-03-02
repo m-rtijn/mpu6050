@@ -2,7 +2,7 @@
 between a Raspberry Pi and a MPU-6050 Gyroscope / Accelerometer combo.
 Made by: MrTijn/Tijndagamer
 Released under the MIT License
-Copyright 2015, 2016
+Copyright (c) 2015, 2016, 2017 MrTijn/Tijndagamer
 """
 
 import smbus
