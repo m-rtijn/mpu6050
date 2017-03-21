@@ -22,6 +22,11 @@ Dependencies
 * smbus-cffi
 
 You can either install smbus-cffi using pip or install the python-smbus package using apt.
+If you don't install the smbus-cffi package but instead use the python-smbus package via apt,
+you need to remove the following line from the setup.py file:
+
+::
+    install_requires=['smbus-cffi']
 
 Installation
 ------------
