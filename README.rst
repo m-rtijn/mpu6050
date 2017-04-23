@@ -19,23 +19,26 @@ Assuming that the address of your MPU-6050 is 0x68, you can read read accelerome
 Dependencies
 ------------
 
-* smbus-cffi
-
-You can either install smbus-cffi using pip or install the python-smbus package using apt.
-If you don't install the smbus-cffi package but instead use the python-smbus package via apt,
-you need to remove the following line from the setup.py file:
-
-::
-
-    install_requires=['smbus-cffi']
+You need to have the ``python-smbus`` package installed.
 
 Installation
 ------------
 
-1. pip install from PyPi
+There are two ways of installing this package: via PyPi or via the git repository.
+Installing from the git repository insures that you have the absolute latest
+version installed, but this can be prone to bugs.
+
+1. install the python-smbus package
+::
+
+    sudo apt install python-smbus
+
+2. Install this package from PyPi repository
 ::
 
     pip install mpu6050-raspberrypi
+
+Or:
 
 2. Clone the repository and run setup.py
 ::
