@@ -12,7 +12,7 @@ class mpu6050:
     # Global Variables
     GRAVITIY_MS2 = 9.80665
     address = None
-    bus = smbus.SMBus(1)
+    bus = None
 
     # Scale Modifiers
     ACCEL_SCALE_MODIFIER_2G = 16384.0
@@ -53,9 +53,9 @@ class mpu6050:
     ACCEL_CONFIG = 0x1C
     GYRO_CONFIG = 0x1B
 
-    def __init__(self, address):
+    def __init__(self, address, bus=1):
         self.address = address
-
+        self.bus = smbus.SMBus(bus)
         # Wake up the MPU-6050 since it starts in sleep mode
         self.bus.write_byte_data(self.address, self.PWR_MGMT_1, 0x00)
 
