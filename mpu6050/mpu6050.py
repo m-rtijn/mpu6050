@@ -58,6 +58,10 @@ class mpu6050:
         self.bus = smbus.SMBus(bus)
         # Wake up the MPU-6050 since it starts in sleep mode
         self.bus.write_byte_data(self.address, self.PWR_MGMT_1, 0x00)
+        # Software Calibration to zero-mean.
+        # must run self.zero_mean_calibration() on level ground to properly calibrate.
+        self.use_calibrated_values = False
+        self.mean_calibrations = [0,0,0,0,0,0]
 
     # I2C communication methods
 
@@ -159,6 +163,12 @@ class mpu6050:
         y = y / accel_scale_modifier
         z = z / accel_scale_modifier
 
+        if self.use_calibrated_values:
+            # zero-mean the data
+            x -= self.mean_calibrations[0]
+            y -= self.mean_calibrations[1]
+            z -= self.mean_calibrations[2]
+
         if g is True:
             return {'x': x, 'y': y, 'z': z}
         elif g is False:
@@ -231,6 +241,12 @@ class mpu6050:
         y = y / gyro_scale_modifier
         z = z / gyro_scale_modifier
 
+        if self.use_calibrated_values:
+            # zero mean the data. (Gyro scope seems to need calibration more than Accel)
+            x -= self.mean_calibrations[3]
+            y -= self.mean_calibrations[4]
+            z -= self.mean_calibrations[5]
+
         return {'x': x, 'y': y, 'z': z}
 
     def get_all_data(self):
@@ -240,6 +256,38 @@ class mpu6050:
         gyro = self.get_gyro_data()
 
         return [accel, gyro, temp]
+
+    def set_calibrated_flag(self,value=True):
+        '''
+        Set to TRUE to used the calculated zero-mean calibration, FALSE
+        to use the default values. Is initialized to FALSE
+        :param value: boolean
+        '''
+        self.use_calibrated_values = value
+
+    def zero_mean_calibration(self):
+        print ("** Calibrating the IMU **")
+        input ("** Place on level ground and hit Return to continue **")
+        # number of samples to collect. 200 == approx 5 seconds worth.
+        N = 200
+        import numpy as np
+        import time
+        data = np.zeros(shape=(N,6),dtype=np.float)
+        for i in range(N):
+            accel = self.get_accel_data(g=True)
+            gyro  = self.get_gyro_data()
+            if (i % 25 == 0):
+                print ('.', end= '', flush=True)
+            data[i, :] = [accel['x'], accel['y'], accel['z'], gyro['x'], gyro['y'], gyro['z']]
+            # wait 25ms for next sample
+            time.sleep(25 / 1000.)
+        # calculate the mean of each reading.
+        mv = np.mean(data, axis=0)
+        # compensate for 1g of gravity on 'z' axis.
+        mv[2] -= 1
+        # save the calibrations
+        self.mean_calibrations = list(mv)
+        print ("\n** Finished. use set_calibrated_flag() to used calibrated values")
 
 if __name__ == "__main__":
     mpu = mpu6050(0x68)
