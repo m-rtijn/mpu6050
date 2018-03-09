@@ -6,6 +6,7 @@ Copyright (c) 2015, 2016, 2017 MrTijn/Tijndagamer
 """
 
 import smbus
+import time
 
 class mpu6050:
 
@@ -62,6 +63,8 @@ class mpu6050:
         # must run self.zero_mean_calibration() on level ground to properly calibrate.
         self.use_calibrated_values = False
         self.mean_calibrations = [0,0,0,0,0,0]
+        # if return_gravity == FALSE, then m/s^2 are returned
+        self.return_gravity = False
 
     # I2C communication methods
 
@@ -252,7 +255,7 @@ class mpu6050:
     def get_all_data(self):
         """Reads and returns all the available data."""
         temp = self.get_temp()
-        accel = self.get_accel_data()
+        accel = self.get_accel_data(g=self.return_gravity)
         gyro = self.get_gyro_data()
 
         return [accel, gyro, temp]
@@ -270,23 +273,34 @@ class mpu6050:
         input ("** Place on level ground and hit Return to continue **")
         # number of samples to collect. 200 == approx 5 seconds worth.
         N = 200
-        import numpy as np
-        import time
-        data = np.zeros(shape=(N,6),dtype=np.float)
+        # initialize the accumulators to 0
+        ax,ay,az,gx,gy,gz = [0]*6
+
         for i in range(N):
+            # calibrate based on gravity, not m/s^2
             accel = self.get_accel_data(g=True)
             gyro  = self.get_gyro_data()
             if (i % 25 == 0):
                 print ('.', end= '', flush=True)
-            data[i, :] = [accel['x'], accel['y'], accel['z'], gyro['x'], gyro['y'], gyro['z']]
+            ax += accel['x']
+            ay += accel['y']
+            az += accel['z']
+            gx += gyro['x']
+            gy += gyro['y']
+            gz += gyro['z']
             # wait 25ms for next sample
             time.sleep(25 / 1000.)
         # calculate the mean of each reading.
-        mv = np.mean(data, axis=0)
+        ax /= float(N)
+        ay /= float(N)
+        az /= float(N)
+        gx /= float(N)
+        gy /= float(N)
+        gz /= float(N)
         # compensate for 1g of gravity on 'z' axis.
-        mv[2] -= 1
+        az -= 1
         # save the calibrations
-        self.mean_calibrations = list(mv)
+        self.mean_calibrations = [ax,ay,az,gx,gy,gz]
         print ("\n** Finished. use set_calibrated_flag() to used calibrated values")
 
 if __name__ == "__main__":
