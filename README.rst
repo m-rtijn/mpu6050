@@ -19,7 +19,7 @@ Assuming that the address of your MPU-6050 is 0x68, you can read read accelerome
 Dependencies
 ------------
 
-You need to have the ``python-smbus`` package installed.
+- ``smbus2``
 
 Installation
 ------------
@@ -28,10 +28,10 @@ There are two ways of installing this package: via PyPi or via the git repositor
 Installing from the git repository insures that you have the absolute latest
 version installed, but this can be prone to bugs.
 
-1. install the python-smbus package
+1. install the smbus2 package
 ::
 
-    sudo apt install python-smbus
+    pip install smbus2
 
 2. Install this package from PyPi repository
 ::

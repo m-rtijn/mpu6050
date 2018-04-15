@@ -1,11 +1,11 @@
 """This program handles the communication over I2C
 between a Raspberry Pi and a MPU-6050 Gyroscope / Accelerometer combo.
-Made by: MrTijn/Tijndagamer
+Made by: Martijn (MrTijn/Tijndagamer)
 Released under the MIT License
-Copyright (c) 2015, 2016, 2017 MrTijn/Tijndagamer
+Copyright (c) 2015, 2016, 2017, 2018 Martijn (MrTijn/Tijndagamer)
 """
 
-import smbus
+import smbus2
 
 class mpu6050:
 
@@ -55,7 +55,7 @@ class mpu6050:
 
     def __init__(self, address, bus=1):
         self.address = address
-        self.bus = smbus.SMBus(bus)
+        self.bus = smbus2.SMBus(bus)
         # Wake up the MPU-6050 since it starts in sleep mode
         self.bus.write_byte_data(self.address, self.PWR_MGMT_1, 0x00)
 
