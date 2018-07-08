@@ -302,6 +302,7 @@ class mpu6050:
         # save the calibrations
         self.mean_calibrations = [ax,ay,az,gx,gy,gz]
         print ("\n** Calibration Complete **")
+
         print ('** offsets: ',end='')
         print(''.join('{:02.4f}  '.format(n) for n in self.mean_calibrations))
 
