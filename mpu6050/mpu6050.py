@@ -270,7 +270,7 @@ class mpu6050:
 
     def zero_mean_calibration(self):
         print ("** Calibrating the IMU **")
-        input ("** Place on level ground and hit Return to continue **")
+        print ("** Place on level ground. re-run is not level at start **")
         # number of samples to collect. 200 == approx 5 seconds worth.
         N = 200
         # initialize the accumulators to 0
@@ -288,8 +288,8 @@ class mpu6050:
             gx += gyro['x']
             gy += gyro['y']
             gz += gyro['z']
-            # wait 25ms for next sample
-            time.sleep(25 / 1000.)
+            # wait 10ms for next sample
+            time.sleep(10 / 1000.)
         # calculate the mean of each reading.
         ax /= float(N)
         ay /= float(N)
@@ -301,7 +301,9 @@ class mpu6050:
         az -= 1
         # save the calibrations
         self.mean_calibrations = [ax,ay,az,gx,gy,gz]
-        print ("\n** Finished. use set_calibrated_flag() to used calibrated values")
+        print ("\n** Calibration Complete **")
+        print ('** offsets: ',end='')
+        print(''.join('{:02.4f}  '.format(n) for n in self.mean_calibrations))
 
 if __name__ == "__main__":
     mpu = mpu6050(0x68)
