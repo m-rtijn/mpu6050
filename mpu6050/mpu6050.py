@@ -5,7 +5,7 @@ Released under the MIT License
 Copyright (c) 2015, 2016, 2017 MrTijn/Tijndagamer
 """
 
-import smbus
+import smbus2 as smbus
 
 class mpu6050:
 
