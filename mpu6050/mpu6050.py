@@ -36,6 +36,14 @@ class mpu6050:
     GYRO_RANGE_1000DEG = 0x10
     GYRO_RANGE_2000DEG = 0x18
 
+    FILTER_BW_256=0x00
+    FILTER_BW_188=0x01
+    FILTER_BW_98=0x02
+    FILTER_BW_42=0x03
+    FILTER_BW_20=0x04
+    FILTER_BW_10=0x05
+    FILTER_BW_5=0x06
+
     # MPU-6050 Registers
     PWR_MGMT_1 = 0x6B
     PWR_MGMT_2 = 0x6C
@@ -52,6 +60,7 @@ class mpu6050:
 
     ACCEL_CONFIG = 0x1C
     GYRO_CONFIG = 0x1B
+    MPU_CONFIG = 0x1A
 
     def __init__(self, address, bus=1):
         self.address = address
@@ -178,6 +187,12 @@ class mpu6050:
 
         # Write the new range to the ACCEL_CONFIG register
         self.bus.write_byte_data(self.address, self.GYRO_CONFIG, gyro_range)
+
+    def set_filter_range(self, filter_range=FILTER_BW_256):
+        """Sets the low-pass bandpass filter frequency"""
+        #TODO - Currently overwrites bits 3,4,5 used for FSYNC pin. Change implementation to fix this. 
+        return self.bus.write_byte_data(self.address, self.MPU_CONFIG,filter_range)
+
 
     def read_gyro_range(self, raw = False):
         """Reads the range the gyroscope is set to.
