@@ -190,8 +190,9 @@ class mpu6050:
 
     def set_filter_range(self, filter_range=FILTER_BW_256):
         """Sets the low-pass bandpass filter frequency"""
-        #TODO - Currently overwrites bits 3,4,5 used for FSYNC pin. Change implementation to fix this. 
-        return self.bus.write_byte_data(self.address, self.MPU_CONFIG,filter_range)
+        # Keep the current EXT_SYNC_SET configuration in bits 3, 4, 5 in the MPU_CONFIG register
+        EXT_SYNC_SET = self.bus.read_byte_data(self.address, self.MPU_CONFIG) & 0b00111000
+        return self.bus.write_byte_data(self.address, self.MPU_CONFIG,  EXT_SYNC_SET | filter_range)
 
 
     def read_gyro_range(self, raw = False):
