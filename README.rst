@@ -44,7 +44,7 @@ Or:
 2b. Clone the repository and run setup.py
 ::
     
-    git clone https://github.com/Tijndagamer/mpu6050.git
+    git clone https://github.com/m-rtijn/mpu6050.git
     python setup.py install
 
 Issues & Bugs
@@ -52,7 +52,7 @@ Issues & Bugs
 
 Please report any issues or bugs here:
 
-    https://github.com/Tijndagamer/mpu6050/issues
+    https://github.com/m-rtijn/mpu6050/issues
 
 
 License
@@ -60,5 +60,5 @@ License
 
 ::
 
-    Copyright (c) 2015, 2016, 2017, 2018 Martijn (MrTijn) and contributors
+    Copyright (c) 2015, 2016, 2017, 2018, 2021 Martijn (martijn@mrtijn.nl) and contributors
     Licensed under the MIT License. For more information, see ``LICENSE``.

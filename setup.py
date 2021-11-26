@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name='mpu6050-raspberrypi',
-      version='1.1',
+      version='1.2',
       description='A Python module for accessing the MPU-6050 digital accelerometer and gyroscope on a Raspberry Pi.',
       classifiers=[
           'License :: OSI Approved :: MIT License',
@@ -15,9 +15,9 @@ setup(name='mpu6050-raspberrypi',
           'Operating System :: POSIX :: Linux',
       ],
       keywords='mpu6050 raspberry',
-      url='https://github.com/Tijndagamer/mpu6050',
-      author='Martijn (MrTijn)',
-      author_email='mrtijn@riseup.net',
+      url='https://github.com/m-rtijn/mpu6050',
+      author='Martijn',
+      author_email='martijn@mrtijn.nl',
       license='MIT',
       packages=['mpu6050'],
       scripts=['bin/mpu6050-example'],
