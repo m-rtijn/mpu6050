@@ -1,6 +1,8 @@
 mpu6050
 =======
 
+|badge_license| |pypi_version| |pypi_downloads|
+
 A Python module for accessing the MPU-6050 digital accelerometer and gyroscope on a Raspberry Pi.
 
 Example
@@ -58,7 +60,17 @@ Please report any issues or bugs here:
 License
 -------
 
-::
+Copyright (c) 2015, 2016, 2017, 2018, 2021 Martijn (martijn@mrtijn.nl) and contributors.
+Available under the MIT License. For more information, see ``LICENSE``.
 
-    Copyright (c) 2015, 2016, 2017, 2018, 2021 Martijn (martijn@mrtijn.nl) and contributors
-    Licensed under the MIT License. For more information, see ``LICENSE``.
+.. |pypi_version| image:: https://img.shields.io/pypi/v/mpu6050-raspberrypi.svg
+    :alt: latest PyPI version
+    :target: https://pypi.org/project/mpu6050-raspberrypi/
+
+.. |pypi_downloads| image:: https://img.shields.io/pypi/dm/mpu6050-raspberrypi
+    :alt: PyPI download count
+    :target: https://pypi.org/project/mpu6050-raspberrypi/
+
+.. |badge_license| image:: https://img.shields.io/github/license/m-rtijn/mpu6050
+    :alt: license: MIT
+    :target: https://github.com/m-rtijn/mpu6050/blob/master/LICENSE
