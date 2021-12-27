@@ -8,7 +8,7 @@ Copyright (c) 2015, 2016, 2017, 2021 Martijn (martijn@mrtijn.nl) and contributer
 https://github.com/m-rtijn/mpu6050
 """
 
-import smbus
+import smbus2 as smbus
 
 class mpu6050:
 
